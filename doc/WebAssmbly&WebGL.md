@@ -1,18 +1,18 @@
-WebAssembly官方网址： https://webassembly.org/
+WebAssembly Official Website: https://webassembly.org/
 
-WebAssembly浏览器兼容性：  
-    Chrome 57+  Chrome 57 于2017年3月发布  
-    Internet Explorer 不支持   
-参考网址：https://developer.mozilla.org/zh-CN/docs/WebAssembly
+WebAssembly Browser Compatibility:
+    Chrome 57+  (Chrome 57 released in March 2017)  
+    Internet Explorer NOT support  
+Reference: https://developer.mozilla.org/zh-CN/docs/WebAssembly
 
-WebGL2.0浏览器兼容性：  
-    Chrome 56+  Chrome 56 于2017年2月发布  
-    Internet Explorer 不支持    
-参考网址：https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext
+WebGL2.0 Browser Compatibility：  
+    Chrome 56+  (Chrome 56 released in February 2017)
+    Internet Explorer NOT support    
+Reference: https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext
 
-平台体系兼容性：  
-    WebAssembly不区分32位和64位浏览器;  
-    WebGL2.0不区分32位和64位浏览器;
+Platform compatibility:
+    WebAssembly support 32-bit and 64-bit browsers;
+    WebGL2.0    support 32-bit and 64-bit browsers;
 
 
 
