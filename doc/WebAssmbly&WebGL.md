@@ -10,8 +10,8 @@ WebGL2.0浏览器兼容性：
     Internet Explorer 不支持  
 参考网址：https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext
 
-平台体系兼容性：
-    WebAssembly不区分32位和64位浏览器;
+平台体系兼容性：  
+    WebAssembly不区分32位和64位浏览器;  
     WebGL2.0不区分32位和64位浏览器;
 
 
