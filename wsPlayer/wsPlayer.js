@@ -1,11 +1,12 @@
 "use strict";
 
-function wsPlayer(videoCanvasId, wsUrl) {
+function wsPlayer(videoCanvasId, drawCanvasId, wsUrl) {
     if (!window.WebAssembly) {
         console.error('Web Browser not support WebAssembly!');
         return ;
     }
     this.videoCanvasId = videoCanvasId;
+    this.drawCanvasCtx = document.getElementById(drawCanvasId).getContext("2d");
     this.wsUrl = wsUrl;
     this.ws = null;
     this.DecodeWorker = null;
@@ -37,6 +38,8 @@ wsPlayer.prototype.open = function () {
                 var ydata = new Uint8Array(evt.data.YData);
                 var udata = new Uint8Array(evt.data.UData);
                 var vdata = new Uint8Array(evt.data.VData);
+                this.drawCanvasCtx.fillStyle="#0000ff";
+                this.drawCanvasCtx.fillRect(20,20,150,100);
                 this.SuperRender.SR_DisplayFrameData(width, height, ydata, udata, vdata);
                 break;
         }
