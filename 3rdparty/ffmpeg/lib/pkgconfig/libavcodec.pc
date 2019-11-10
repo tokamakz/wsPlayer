@@ -1,0 +1,14 @@
+prefix=/home/qnai/wsPlayer/3rdparty/ffmpeg
+exec_prefix=${prefix}
+libdir=/home/qnai/wsPlayer/3rdparty/ffmpeg/lib
+includedir=/home/qnai/wsPlayer/3rdparty/ffmpeg/include
+
+Name: libavcodec
+Description: FFmpeg codec library
+Version: 58.54.100
+Requires: libavutil >= 56.31.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavcodec -lm
+Libs.private: 
+Cflags: -I${includedir}

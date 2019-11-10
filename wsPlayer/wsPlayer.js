@@ -7,18 +7,16 @@ function wsPlayer(videoCanvasId, wsUrl) {
     }
     this.videoCanvasId = videoCanvasId;
     this.wsUrl = wsUrl;
-    this.SuperRender = null;
     this.ws = null;
     this.DecodeWorker = null;
-}
-
-wsPlayer.prototype.open = function () {
     this.SuperRender = new SuperRender2(this.videoCanvasId);
     if(null == this.SuperRender) {
         console.error("Web Browser not support WebGL!");
-        return ;
     }
-    this.DecodeWorker = new Worker("DecodeWorker.js");
+}
+
+wsPlayer.prototype.open = function () {
+    this.DecodeWorker = new Worker("decode_worker.js");
     this.DecodeWorker.onmessage = function(evt) {
         switch(evt.data.command) {
             case "loaded":
@@ -27,6 +25,11 @@ wsPlayer.prototype.open = function () {
                 this.ws.onmessage = function(evt) {
                     this.DecodeWorker.postMessage(evt.data, [evt.data]);
                 }.bind(this);
+
+                this.ws.onopen = function() {
+                    this.ws.send("hello");
+                }.bind(this);
+                
                 break;
             case "video":
                 var width = evt.data.width;
@@ -38,10 +41,10 @@ wsPlayer.prototype.open = function () {
                 break;
         }
     }.bind(this);
-}
+};
 
 wsPlayer.prototype.close = function () {
     this.ws && this.ws.close();
     this.DecodeWorker && this.DecodeWorker.terminate();
     this.SuperRender && this.SuperRender.SR_Destroy();
-}
+};
