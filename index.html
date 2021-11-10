@@ -1,0 +1,37 @@
+<html>
+<head>
+</head>
+<body>
+    <video muted autoplay id="video"></video>
+    <script> 
+        var queue = [];
+        var sourcebuffer = null;
+       
+        var ws = new WebSocket('ws://100.100.154.29:11081/live/test.mp4?type=url&url=rtsp://admin:smai1234@100.100.154.133');
+        ws.binaryType = 'arraybuffer';
+        ws.onmessage = function(e){
+            queue.push(e.data);
+            if (!sourcebuffer || sourcebuffer.updating) {
+                return;
+            }
+            sourcebuffer.appendBuffer(queue.shift());
+        }
+            
+        var video = document.getElementById("video");
+        var mediasource = new MediaSource();
+        video.src = URL.createObjectURL(mediasource);
+        
+        mediasource.onsourceopen = function() {
+            sourcebuffer = mediasource.addSourceBuffer('video/mp4; codecs="avc1.4d4028"');
+            sourcebuffer.onupdateend = function() {
+                if(video.buffered.length > 0) {
+                    let start = video.buffered.start(0);             
+                    if (video.currentTime < start) {
+                        video.currentTime = start;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
