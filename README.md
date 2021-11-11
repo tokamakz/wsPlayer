@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/v354412101/wsPlayer/master/logo.png)
+![logo](https://raw.githubusercontent.com/v354412101/wsPlayer/master/logo.svg)
 # wsPlayer
 
 ​       wsPlayer是一款专注于WebSocket-fmp4协议的web视频播放器，HTTP/WebSocket-fmp4协议与RTMP、HLS、HTTP-FLV相比，具有播放延时短，HTML5兼容性好等优点；
