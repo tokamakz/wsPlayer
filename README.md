@@ -1,6 +1,6 @@
 # wsPlayer
 
-wsPlayer是一款专注于WebSocket-fmp4协议的web视频播放器，HTTP/WebSocket-fmp4协议与RTMP、HLS、HTTP-FLV相比，具有播放延时短，HTML5兼容性好等优点；
+​       wsPlayer是一款专注于WebSocket-fmp4协议的web视频播放器，HTTP/WebSocket-fmp4协议与RTMP、HLS、HTTP-FLV相比，具有播放延时短，HTML5兼容性好等优点；
 
 见各流媒体协议对比：
 
@@ -66,10 +66,10 @@ ws://100.100.154.29:8083/live/test.live.mp4
 </html>
 ```
 
-
+## 播放器原理
+​       将WebSocket收到的fmp4 Segment片段`appendBuffer`到`MediaSource`中，此时`video.buffered`会记录当前已经`appendBuffer`的视频时间段，然后将`video.buffered`的起始时间设置给`video.currentTime`，然后浏览器就会从`video.buffered`缓存的视频开始播放
 
 ## 项目计划
-
 * v1.0 实现用video标签，调用MSE播放WebSocket-fmp4（H.264）直播流，并把播放器封装为标准的npm组件；
 * v2.0 实现用WebAssembly FFmpeg解码H.265，然后用canvas标签WebGL渲染YUV，从而实现播放WebSocket-fmp4（H.265）直播流，并实现动态切换H.264、H.265这两种播放机制；
 * v3.0 实现视频流SEI信息的callback回调
