@@ -31,19 +31,19 @@
 
 1. 部署后端流媒体服务器
 
-
 ```shell
-docker run -id -p 8080:80 panjjo/zlmediakit
+docker pull panjjo/zlmediakit
+docker run -id -p 8080:80 -p 554:554 panjjo/zlmediakit
 ```
 
-2. 向ZLMediaKit添加一路视频流（API接口参数请自行更换），见ZLMediaKit MediaServer API：[MediaServer支持的HTTP API](https://github.com/zlmediakit/ZLMediaKit/wiki/MediaServer%E6%94%AF%E6%8C%81%E7%9A%84HTTP-API)
+2. 使用ffmpeg命令，向ZLMediaKit添加一路RTSP推流
 ```shell
-curl --location --request GET '100.100.154.29:8083/index/api/addStreamProxy?secret=035c73f7-bb6b-4889-a715-d9eb2d1925cc&vhost=__defaultVhost__&app=live&stream=test&url=rtsp://admin:smai1234@100.100.154.133'
+ffmpeg -re -stream_loop -1 -i test.mp4 -an -vcodec copy -f rtsp -rtsp_transport tcp rtsp://100.100.154.29/live/test
 ```
 
 3. 根据ZLMediaKit的[播放url规则](https://github.com/zlmediakit/ZLMediaKit/wiki/%E6%92%AD%E6%94%BEurl%E8%A7%84%E5%88%99)得知，WebSocket-fmp4协议的URL格式为：
 ```shell
-ws://100.100.154.29:8083/live/test.live.mp4
+ws://100.100.154.29:8080/live/test.live.mp4
 ```
 
 4. 然后调用播放器代码：
