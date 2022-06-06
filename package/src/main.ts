@@ -1,5 +1,5 @@
 import { defineCustomElement } from 'vue';
-import WsPlayer from './components/WsPlayer.vue';
-const WsPlayer = defineCustomElement(WsPlayer);
+import WsPlayerVue from './components/WsPlayer.vue';
+const WsPlayer = defineCustomElement(WsPlayerVue);
 
-customElements.define('WsPlayer', WsPlayer);
+customElements.define('ws-player', WsPlayer);

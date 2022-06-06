@@ -4,8 +4,6 @@
 
 Please run steps below to run it as development mode.
 `````
-git clone https://github.com/skysign/vite-vue3-typescript-webcomponent.git
-cd vite-vue3-typescript-webcomponent
 npm install
 npm run dev
 `````

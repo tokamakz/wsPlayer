@@ -7,7 +7,7 @@ const props = defineProps({
   },
 });
 
-const urlProp = ref(toString(props.url));
+const urlProp = ref(props.url);
 
 </script>
 
