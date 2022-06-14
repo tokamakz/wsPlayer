@@ -53,30 +53,30 @@ $ git push origin --tags
 Vue 3
 ```js
 import { createApp } from 'vue'
-import HelloWorld from '@run/ws-player'
+import WsPlayer from '@run/ws-player'
 import App from './app.vue'
 
 const app = createApp(App)
-app.use(HelloWorld)
+app.use(WsPlayer)
 ```
 
 Vue 2
 ```js
 import Vue from 'vue'
 import CompositionAPI from '@vue/composition-api'
-import HelloWorld from '@run/ws-player'
+import WsPlayer from '@run/ws-player'
 
 Vue.use(CompositionAPI)
-Vue.use(HelloWorld)
+Vue.use(WsPlayer)
 ```
 
 ### Basic Usage
 ```html
 <template>
-  <hello-world />
+  <WsPlayer />
 </template>
 ```
-[Demo →](https://stackblitz.com/edit/vitejs-vite-e7qhxx?file=src%2FApp.vue)
+[Demo →](https://stackblitz.com/github/rwerplus/wsPlayer/tree/dev?file=README.md)
 
 ## Cheer me on
 If you like my works, you can cheer me 😆

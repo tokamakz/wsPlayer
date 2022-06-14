@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import WsPlayer from '/package/@conponent/WsPlayer.vue'
 import { defineComponent } from 'vue'
+import WsPlayer from '../package/@component/WsPlayer.vue'
 export default defineComponent({
   name: 'App',
   components: {

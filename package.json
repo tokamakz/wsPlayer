@@ -4,12 +4,13 @@
   "description": "Starter template to build component library for vue.js 2-3",
   "keywords": [
     "starter",
-    "boilerplate",
+    "video",
     "vue",
     "vue3",
     "component",
-    "ui",
-    "frontend"
+    "wsplayer",
+    "videoPlayer",
+    "flvPlayer"
   ],
   "license": "MIT",
   "author": "Randall",

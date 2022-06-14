@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
   if (isProd) {
     build = {
       lib: {
-        entry: resolve(__dirname, 'src/index.ts'),
+        entry: resolve(__dirname, './package/index.ts'),
         name: 'vivu-npm',
         fileName: 'index',
         formats: ['es', 'cjs', 'umd'],
