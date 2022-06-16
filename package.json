@@ -1,7 +1,7 @@
 {
   "name": "@run/ws-player",
-  "version": "0.1.4",
-  "description": "Starter template to build component library for vue.js 2-3",
+  "version": "0.0.1",
+  "description": "wsPlayer是一款专注于WebSocket-fmp4协议的web视频播放器,HTTP/WebSocket-fmp4协议与RTMP、HLS、HTTP-FLV相比,具有播放延时短,HTML5兼容性好等优点",
   "keywords": [
     "starter",
     "video",
@@ -51,7 +51,7 @@
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.4.9",
-    "vue": "^2.0.0 || >=3.0.0"
+    "vue": "^2.6.11 || >=3.0.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
