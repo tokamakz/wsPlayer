@@ -11,8 +11,8 @@ export default defineConfig(({ mode }) => {
   if (isProd) {
     build = {
       lib: {
-        entry: resolve(__dirname, './package/index.ts'),
-        name: 'vivu-npm',
+        entry: resolve(__dirname, './src/index.ts'),
+        name: '@run/ws-player-npm',
         fileName: 'index',
         formats: ['es', 'cjs', 'umd'],
       },
