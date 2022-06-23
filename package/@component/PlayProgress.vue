@@ -1,3 +1,11 @@
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'PlayProgress'
+})
+</script>
+
 <template>
   <div class="wsp-progress-bar" tabindex='-1' role='slider' aria-label='播放滑块' aria-valuemin='0' aria-valuemax='57'
     aria-valuenow='4' aria-valuetext='0 分钟 7 秒/0 分钟 57 秒'>

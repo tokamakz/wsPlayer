@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { defineProps, withDefaults } from 'vue-demi'
 const wsOptions = {}
 const props = withDefaults(defineProps<Props>(), {
   url: '',
