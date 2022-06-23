@@ -61,44 +61,6 @@
                 font-size: 109%;
                 text-align: left;
                 direction: ltr;
-                .wsp-button,
-                .wsp-next-button,
-                .wsp-prev-button {
-                    flex: 0 0 auto;
-                    width: 48px;
-                    height: 100%;
-                }
-                .wsp-button {
-                    height: 100%;
-                    opacity: 0.9;
-                    display: inline-block;
-                    padding: 0 2px;
-                    transition: opacity 0.1s cubic-bezier(0.4, 0, 1, 1);
-                    overflow: hidden;
-                    outline: 0;
-                    border: none;
-                    background-color: transparent;
-                    padding: 0;
-                    color: inherit;
-                    text-align: inherit;
-                    font-size: 100%;
-                    font-family: inherit;
-                    cursor: default;
-                    line-height: inherit;
-                    &.wsp-play-button {
-                        width: 46px;
-                        flex: 0 0 auto;
-                        .wsp-svg-shadow {
-                            stroke: #000;
-                            stroke-opacity: 0.15;
-                            stroke-width: 2px;
-                            fill: none;
-                        }
-                        .ytp-svg-fill {
-                            fill: #fff;
-                        }
-                    }
-                }
                 .wsp-left-controls {
                     display: flex;
                     flex: 1;

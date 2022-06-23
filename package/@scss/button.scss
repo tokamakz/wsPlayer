@@ -1,0 +1,18 @@
+.wsp-button {
+  height: 100%;
+  opacity: 0.9;
+  display: inline-block;
+  padding: 0 2px;
+  transition: opacity 0.1s cubic-bezier(0.4, 0, 1, 1);
+  overflow: hidden;
+  outline: 0;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+  text-align: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  cursor: default;
+  line-height: inherit;
+}

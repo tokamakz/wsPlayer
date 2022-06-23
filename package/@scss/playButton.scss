@@ -1,0 +1,13 @@
+.wsp-play-button {
+  width: 46px;
+  flex: 0 0 auto;
+  .wsp-svg-shadow {
+    stroke: #000;
+    stroke-opacity: 0.15;
+    stroke-width: 2px;
+    fill: none;
+  }
+  .ytp-svg-fill {
+    fill: #fff;
+  }
+}
