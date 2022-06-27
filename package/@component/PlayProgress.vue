@@ -1,24 +1,25 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'PlayProgress'
+  name: 'PlayProgress',
 })
 </script>
 
 <template>
-  <div class="wsp-progress-bar" tabindex='-1' role='slider' aria-label='播放滑块' aria-valuemin='0' aria-valuemax='57'
-    aria-valuenow='4' aria-valuetext='0 分钟 7 秒/0 分钟 57 秒'>
-    <div class="wsp-chapters-container" style='height: 7px;'>
+  <div
+    class="wsp-progress-bar" tabindex="-1" role="slider" aria-label="播放滑块" aria-valuemin="0" aria-valuemax="120"
+    aria-valuenow="4" aria-valuetext="0 分钟 7 秒/0 分钟 57 秒"
+  >
+    <div class="wsp-chapters-container" style="height: 7px;">
       <div class="wsp-chapter-hover-container" style="width: 100%;">
-        <div class="wsp-progress-bar-padding"></div>
+        <div class="wsp-progress-bar-padding" />
         <div class="wsp-progress-list">
-          <div class="wsp-play-progress wsp-swatch-background-color" style="left: 0px; transform: scaleX(0.137041);">
-          </div>
-          <div class="wsp-progress-linear-live-buffer"></div>
-          <div class="wsp-load-progress" style="left: 0px; transform: scaleX(1);"></div>
-          <div class="wsp-hover-progress" style="left: 84.417px; transform: scaleX(0);"></div>
-          <div class="wsp-ad-progress-list"></div>
+          <div class="wsp-play-progress wsp-swatch-background-color" style="left: 0px; transform: scaleX(0.137041);" />
+          <div class="wsp-progress-linear-live-buffer" />
+          <div class="wsp-load-progress" style="left: 0px; transform: scaleX(1);" />
+          <div class="wsp-hover-progress" style="left: 0.417px; transform: scaleX(0);" />
+          <div class="wsp-ad-progress-list" />
         </div>
       </div>
     </div>
@@ -73,7 +74,7 @@ export default defineComponent({
         }
 
         .wsp-swatch-background-color {
-          background: #fc0;
+          background: #f00;
           @include position();
         }
 

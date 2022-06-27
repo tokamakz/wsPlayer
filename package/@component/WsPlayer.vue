@@ -1,15 +1,11 @@
 <script lang="ts" setup>
-const wsOptions = {}
-const props = withDefaults(defineProps<Props>(), {
-  url: '',
-})
 </script>
 
 <template>
   <div class="ws-player">
     <div class="wsp-container">
       <div class="wsp-video-container">
-        <video id="wsp-api-flush" tabindex="-1" :autoplay="false" muted class="wsp-video">
+        <video id="wsp-api-flush" tabindex="-1" :autoplay="true" muted class="wsp-video">
           <source :src="props.url" type="video/mp4">
         </video>
       </div>
@@ -19,7 +15,8 @@ const props = withDefaults(defineProps<Props>(), {
           <div class="wsp-left-controls">
             <!-- 播放按钮 -->
             <PlayButton />
-            <PlayProgress/>
+            <!-- 播放进度条 -->
+            <PlayProgress />
           </div>
           <div class="wsp-right-controls" />
         </div>
@@ -29,8 +26,12 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <script lang="ts">
-import PlayButton from "./PlayButton.vue";
-import PlayProgress from './PlayProgress.vue';
+import PlayButton from './PlayButton.vue'
+import PlayProgress from './PlayProgress.vue'
+const wsOptions = {}
+const props = withDefaults(defineProps<Props>(), {
+  url: '',
+})
 
 interface Props {
   url?: string
