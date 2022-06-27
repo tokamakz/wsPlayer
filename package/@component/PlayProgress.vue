@@ -7,10 +7,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <div
-    class="wsp-progress-bar" tabindex="-1" role="slider" aria-label="播放滑块" aria-valuemin="0" aria-valuemax="120"
-    aria-valuenow="4" aria-valuetext="0 分钟 7 秒/0 分钟 57 秒"
-  >
+  <div class="wsp-progress-bar" tabindex="-1" role="slider" aria-label="播放滑块" aria-valuemin="0" aria-valuemax="120"
+    aria-valuenow="4" aria-valuetext="0 分钟 7 秒/0 分钟 57 秒">
     <div class="wsp-chapters-container" style="height: 7px;">
       <div class="wsp-chapter-hover-container" style="width: 100%;">
         <div class="wsp-progress-bar-padding" />
