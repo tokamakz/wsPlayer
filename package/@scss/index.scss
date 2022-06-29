@@ -8,6 +8,9 @@
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+:root {
+  --ws-player-bg-color: #252933;
+}
 .ws-player {
     position: relative;
     display: block;
@@ -38,13 +41,15 @@
             }
         }
         .wsp-control-bottom {
-            width: 100%;
+            width: calc(100% - 8px);
             position: absolute;
             bottom: 0;
+            left: 4px;
             height: 48px;
             z-index: 60;
             padding-top: 3px;
             text-align: left;
+            border-radius: 4px;
             direction: ltr;
             text-shadow: 0 0 2px rgb(0 0 0 / 50%);
             .wsp-progress-bar-container {

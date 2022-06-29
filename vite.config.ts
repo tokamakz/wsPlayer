@@ -24,7 +24,6 @@ export default defineConfig(({ mode }) => {
          */
         external: [
           'vue',
-          'vue-demi',
         ],
         output: {
           /**
@@ -33,8 +32,7 @@ export default defineConfig(({ mode }) => {
            * for externalized deps
            */
           globals: {
-            'vue': 'Vue',
-            'vue-demi': 'VueDemi',
+            'vue': 'Vue'
           },
         },
       },
@@ -48,7 +46,7 @@ export default defineConfig(({ mode }) => {
      * dependency pre-bundling
      */
     optimizeDeps = {
-      exclude: ['vue-demi'],
+      exclude: [],
     }
   }
 
@@ -63,8 +61,7 @@ export default defineConfig(({ mode }) => {
       environment: 'happy-dom',
       deps: {
         inline: [
-          '@vue',
-          'vue-demi',
+          '@vue'
         ],
       },
       coverage: {

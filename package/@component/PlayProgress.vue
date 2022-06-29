@@ -1,9 +1,27 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import {  onMounted, ref } from 'vue';
+// the progress $refs, modify the width or left
+const progressRefs = ref(null);
+// the scrubber $refs,modify the width
+const scrubberRefs = ref(null);
+const listRefs = ref(null);
+const width = ref<number>(0)
+onMounted(() => {
+  console.dir(listRefs.value.style.width);
+});
 
-export default defineComponent({
-  name: 'PlayProgress',
-})
+const handleScrubberDown = ($event) => {
+  console.log('handleScrubberDown', $event);
+  width.value = listRefs.value.getBoundingClientRect().width
+  scrubberRefs.value.style.transform = `translateX(${$event.layerX}px)`;
+}
+const handleScrubberMover = ($event) => {
+  console.log('handleScrubberMover', $event.layerX);
+  console.log(scrubberRefs.value.style.transform)
+}
+const handleScrubberUp = ($event) => {
+  console.log('handleScrubberUp', $event);
+}
 </script>
 
 <template>
@@ -12,13 +30,21 @@ export default defineComponent({
     <div class="wsp-chapters-container" style="height: 7px;">
       <div class="wsp-chapter-hover-container" style="width: 100%;">
         <div class="wsp-progress-bar-padding" />
-        <div class="wsp-progress-list">
-          <div class="wsp-play-progress wsp-swatch-background-color" style="left: 0px; transform: scaleX(0.137041);" />
+        <div class="wsp-progress-list" ref='listRefs'>
+          <!-- 已播放区 -->
+          <div class="wsp-play-progress wsp-swatch-background-color" ref='progressRefs' style="left: 0px; transform: scaleX(0);" />
           <div class="wsp-progress-linear-live-buffer" />
+          <!-- 缓冲区 -->
           <div class="wsp-load-progress" style="left: 0px; transform: scaleX(1);" />
-          <div class="wsp-hover-progress" style="left: 0.417px; transform: scaleX(0);" />
+          <div class="wsp-hover-progress" style="left: 0px; transform: scaleX(0);" />
           <div class="wsp-ad-progress-list" />
         </div>
+      </div>
+    </div>
+    <!-- 播放指示器 -->
+    <div class="wsp-scrubber-container">
+      <div class="wsp-scrubber-button wsp-swatch-background-color" ref='scrubberRefs' @dragover='handleScrubberDown' @dragstart='handleScrubberMover' @pointerup='handleScrubberUp'>
+        <div class="wsp-scrubber-pull-indicator"></div>
       </div>
     </div>
   </div>
@@ -51,6 +77,12 @@ export default defineComponent({
       height: 100%;
       float: left;
 
+      &:hover {
+        .wsp-progress-list {
+          transform: scaleY(0.8);
+        }
+      }
+
       .wsp-progress-bar-padding {
         position: absolute;
         width: 100%;
@@ -64,11 +96,12 @@ export default defineComponent({
         background: rgba(255, 255, 255, .2);
         height: 100%;
         transform: scaleY(0.6);
-        transition: transform .1s cubic-bezier(0.4, 0, 1, 1), -webkit-transform .1s cubic-bezier(0.4, 0, 1, 1);
+        transition: transform .1s cubic-bezier(0.4, 0, 1, 1);
         position: relative;
 
         .wsp-play-progress {
           z-index: 34;
+          width: 100%;
         }
 
         .wsp-swatch-background-color {
@@ -105,6 +138,33 @@ export default defineComponent({
           display: none;
         }
       }
+    }
+  }
+
+  .wsp-scrubber-container {
+    position: absolute;
+    top: -4px;
+    left: -6.5px;
+    z-index: 43;
+
+    .wsp-scrubber-button {
+      transition: transform .1s cubic-bezier(0, 0, 0.2, 1);
+      height: 13px;
+      width: 13px;
+      border-radius: 6.5px;
+      cursor: pointer;
+
+      .wsp-scrubber-pull-indicator {
+        position: absolute;
+        z-index: 42;
+        bottom: 16.9px;
+        left: 6.5px;
+        transform: rotate(45deg);
+      }
+    }
+
+    .wsp-swatch-background-color {
+      background-color: #f00;
     }
   }
 }

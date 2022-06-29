@@ -1,9 +1,8 @@
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import { ref } from '@vue/reactivity';
 
-export default defineComponent({
-  name: 'PlayButton',
-})
+const isPlay = ref<boolean>(false)
+
 </script>
 
 <template>
@@ -14,6 +13,7 @@ export default defineComponent({
     </svg>
   </button>
 </template>
+
 <style lang='scss' scoped>
 @import '../@scss/button.scss';
 @import '../@scss/playButton.scss';
