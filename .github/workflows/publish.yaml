@@ -1,0 +1,45 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.1.0
+        with:
+          version: latest
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.*
+          registry-url: https://registry.npmjs.org/
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Generate a new github release
+        run: npx conventional-github-releaser -p angular
+        continue-on-error: true
+        env:
+          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GIT_TOKEN }}
+
+      - name: Build package
+        run: pnpm build
+
+      - name: Publish package
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
