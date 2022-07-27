@@ -1,6 +1,5 @@
 <!-- 需求：根据传入的值动态修改进度条；根据是否可以拖动修改当前播放参数，并传出 -->
 <script lang="ts" setup>
-import { type } from 'os';
 import { onMounted, ref, nextTick, toRefs, watch, reactive, onBeforeUnmount } from 'vue';
 interface Props {
   percent?: Number | String,
@@ -62,7 +61,7 @@ const handleScrubberMover = ($event) => {
   } else {
     scrubberRefs.value!.style.transform = `translateX(${moveReact.scaleX}px)`;
   }
-  console.log('dragstart', moveReact.scaleX,width.value);
+  console.log('dragstart', moveReact.scaleX, width.value);
 }
 
 const handleScrubberUp = ($event) => {
