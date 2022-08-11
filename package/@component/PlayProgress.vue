@@ -1,72 +1,75 @@
+<!-- eslint-disable no-console -->
 <!-- 需求：根据传入的值动态修改进度条；根据是否可以拖动修改当前播放参数，并传出 -->
 <script lang="ts" setup>
-import { onMounted, ref, nextTick, toRefs, watch, reactive, onBeforeUnmount } from 'vue';
+import { nextTick, onBeforeUnmount, onMounted, reactive, ref, toRefs, watch } from 'vue'
 interface Props {
-  percent?: Number | String,
-  percentProgress?: Number | String,
+  percent?: Number | String
+  percentProgress?: Number | String
   disabled?: Boolean
 }
-type RefElement = HTMLElement | null;
-const dotWidth = 10;
+type RefElement = HTMLElement | null
+const dotWidth = 10
 // the progress $refs, modify the width or left
-const progressRefs = ref<RefElement>(null);
+const progressRefs = ref<RefElement>(null)
 // the scrubber $refs,modify the width
-const scrubberRefs = ref<RefElement>(null);
-const listRefs = ref<RefElement>(null);
+const scrubberRefs = ref<RefElement>(null)
+const listRefs = ref<RefElement>(null)
 const width = ref<number>(0)
 const props = defineProps<Props>()
 const emit = defineEmits(['change', 'delete'])
 const moveReact = reactive({
   status: false,
   scaleX: 0,
-  left: 0
+  left: 0,
 })
 
 watch(() => props.percent, (value, preValue) => {
-  console.log('⚽︎⚽︎⚽︎', value, preValue);
+  console.log('⚽︎⚽︎⚽︎', value, preValue)
   // scrubberRefs.value.style.transform = `translateX(${value}px)`;
 })
 watch(() => moveReact.status, (value, preValue) => {
-  if (value) {
-    _bindEvents();
-  } else {
-    _removeEvents();
-  }
+  if (value)
+    _bindEvents()
+
+  else
+    _removeEvents()
 })
 
 onMounted(() => {
   nextTick(() => {
-    console.log(listRefs.value!.getBoundingClientRect());
+    console.log(listRefs.value!.getBoundingClientRect())
   })
-});
+})
 
 onBeforeUnmount(() => {
   _removeEvents()
 })
 
 const handleScrubberDown = ($event) => {
-  console.log('鼠标按下事件', $event);
+  console.log('鼠标按下事件', $event)
 }
 
 const handleScrubberMover = ($event) => {
-  moveReact.status = true;
+  moveReact.status = true
   const scrubberButtonRefs = scrubberRefs.value!.getBoundingClientRect().width / 2
-  moveReact.scaleX = $event.layerX - scrubberButtonRefs;
-  width.value = listRefs.value!.getBoundingClientRect().width;
+  moveReact.scaleX = $event.layerX - scrubberButtonRefs
+  width.value = listRefs.value!.getBoundingClientRect().width
   console.log(scrubberButtonRefs)
-  if (moveReact.scaleX >= width.value) {
-    scrubberRefs.value!.style.transform = `translateX(${width.value}px)`;
-  } else if (moveReact.scaleX < -scrubberButtonRefs) {
-    scrubberRefs.value!.style.transform = `translateX(${-scrubberButtonRefs}px)`;
-  } else {
-    scrubberRefs.value!.style.transform = `translateX(${moveReact.scaleX}px)`;
-  }
-  console.log('dragstart', moveReact.scaleX, width.value);
+  if (moveReact.scaleX >= width.value)
+    scrubberRefs.value!.style.transform = `translateX(${width.value}px)`
+
+  else if (moveReact.scaleX < -scrubberButtonRefs)
+    scrubberRefs.value!.style.transform = `translateX(${-scrubberButtonRefs}px)`
+
+  else
+    scrubberRefs.value!.style.transform = `translateX(${moveReact.scaleX}px)`
+
+  console.log('dragstart', moveReact.scaleX, width.value)
 }
 
 const handleScrubberUp = ($event) => {
-  moveReact.status = false;
-  console.log('drop', $event);
+  moveReact.status = false
+  console.log('drop', $event)
 }
 
 // 添加绑定事件
@@ -86,15 +89,19 @@ const _removeEvents = () => {
 </script>
 
 <template>
-  <div class="wsp-progress-bar" tabindex="-1" role="slider" aria-label="播放滑块" aria-valuemin="0" aria-valuemax="120"
-    aria-valuenow="4" aria-valuetext="0 分钟 7 秒/0 分钟 57 秒">
+  <div
+    class="wsp-progress-bar" tabindex="-1" role="slider" aria-label="播放滑块" aria-valuemin="0" aria-valuemax="120"
+    aria-valuenow="4" aria-valuetext="0 分钟 7 秒/0 分钟 57 秒"
+  >
     <div class="wsp-chapters-container" style="height: 7px;">
       <div class="wsp-chapter-hover-container" style="width: 100%;">
         <div class="wsp-progress-bar-padding" />
-        <div class="wsp-progress-list" ref='listRefs'>
+        <div ref="listRefs" class="wsp-progress-list">
           <!-- 已播放区 -->
-          <div class="wsp-play-progress wsp-swatch-background-color" ref='progressRefs'
-            style="left: 0px; transform: scaleX(0);" />
+          <div
+            ref="progressRefs" class="wsp-play-progress wsp-swatch-background-color"
+            style="left: 0px; transform: scaleX(0);"
+          />
           <div class="wsp-progress-linear-live-buffer" />
           <!-- 缓冲区 -->
           <div class="wsp-load-progress" style="left: 0px; transform: scaleX(1);" />
@@ -104,10 +111,12 @@ const _removeEvents = () => {
       </div>
     </div>
     <!-- 播放指示器 -->
-    <div class="wsp-scrubber-container" ref='scrubberRefs'>
-      <div class="wsp-scrubber-button wsp-swatch-background-color" @mousedown.prevent='handleScrubberMover'
-        @drop='handleScrubberUp'>
-        <div class="wsp-scrubber-pull-indicator"></div>
+    <div ref="scrubberRefs" class="wsp-scrubber-container">
+      <div
+        class="wsp-scrubber-button wsp-swatch-background-color" @mousedown.prevent="handleScrubberMover"
+        @drop="handleScrubberUp"
+      >
+        <div class="wsp-scrubber-pull-indicator" />
       </div>
     </div>
   </div>
