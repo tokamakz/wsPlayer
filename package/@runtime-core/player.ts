@@ -1,6 +1,6 @@
+import * as MP4Box from 'mp4box'
 import type { HtmlAttributes } from 'csstype'
 import { isEmptyStr } from './helper'
-import * as MP4Box from './mp4box.all.min.js'
 interface Player {
   videoId: string | HtmlAttributes
   url: string | undefined | null
@@ -28,7 +28,6 @@ export class WsPlayer implements Player {
     this.frameQueue = []
     this.sourcebuffer = null
     this.debug = debug
-    this.open()
     console.log('wsPlayer v1.0.1 20220626')
   }
 
@@ -113,6 +112,7 @@ export class WsPlayer implements Player {
       if (this.firstMessage) {
         this.firstMessage = false
         const messageEv = e.data
+        // eslint-disable-next-line new-parens
         const mp4Box = new MP4Box
         mp4Box.onReady = this.source
         messageEv.fileStart = 0
