@@ -23,17 +23,20 @@ const moveReact = reactive({
   left: 0,
 })
 
-watch(() => props.percent, (value, preValue) => {
-  console.log('⚽︎⚽︎⚽︎', value, preValue)
-  // scrubberRefs.value.style.transform = `translateX(${value}px)`;
-})
-watch(() => moveReact.status, (value, preValue) => {
-  if (value)
-    _bindEvents()
-
-  else
-    _removeEvents()
-})
+watch(
+  () => props.percent,
+  (value, preValue) => {
+    console.log('⚽︎⚽︎⚽︎', value, preValue)
+    // scrubberRefs.value.style.transform = `translateX(${value}px)`;
+  },
+)
+watch(
+  () => moveReact.status,
+  (value, preValue) => {
+    if (value) _bindEvents()
+    else _removeEvents()
+  },
+)
 
 onMounted(() => {
   nextTick(() => {
@@ -55,14 +58,9 @@ const handleScrubberMover = ($event) => {
   moveReact.scaleX = $event.layerX - scrubberButtonRefs
   width.value = listRefs.value!.getBoundingClientRect().width
   console.log(scrubberButtonRefs)
-  if (moveReact.scaleX >= width.value)
-    scrubberRefs.value!.style.transform = `translateX(${width.value}px)`
-
-  else if (moveReact.scaleX < -scrubberButtonRefs)
-    scrubberRefs.value!.style.transform = `translateX(${-scrubberButtonRefs}px)`
-
-  else
-    scrubberRefs.value!.style.transform = `translateX(${moveReact.scaleX}px)`
+  if (moveReact.scaleX >= width.value) scrubberRefs.value!.style.transform = `translateX(${width.value}px)`
+  else if (moveReact.scaleX < -scrubberButtonRefs) scrubberRefs.value!.style.transform = `translateX(${-scrubberButtonRefs}px)`
+  else scrubberRefs.value!.style.transform = `translateX(${moveReact.scaleX}px)`
 
   console.log('dragstart', moveReact.scaleX, width.value)
 }
@@ -89,39 +87,30 @@ const _removeEvents = () => {
 </script>
 
 <template>
-  <div
-    class="wsp-progress-bar" tabindex="-1" role="slider" aria-label="播放滑块" aria-valuemin="0" aria-valuemax="120"
-    aria-valuenow="4" aria-valuetext="0 分钟 7 秒/0 分钟 57 秒"
-  >
-    <div class="wsp-chapters-container" style="height: 7px;">
-      <div class="wsp-chapter-hover-container" style="width: 100%;">
+  <div class="wsp-progress-bar" tabindex="-1" role="slider" aria-label="播放滑块" aria-valuemin="0" aria-valuemax="120" aria-valuenow="4" aria-valuetext="0 分钟 7 秒/0 分钟 57 秒">
+    <div class="wsp-chapters-container" style="height: 7px">
+      <div class="wsp-chapter-hover-container" style="width: 100%">
         <div class="wsp-progress-bar-padding" />
         <div ref="listRefs" class="wsp-progress-list">
           <!-- 已播放区 -->
-          <div
-            ref="progressRefs" class="wsp-play-progress wsp-swatch-background-color"
-            style="left: 0px; transform: scaleX(0);"
-          />
+          <div ref="progressRefs" class="wsp-play-progress wsp-swatch-background-color" style="left: 0px; transform: scaleX(0)" />
           <div class="wsp-progress-linear-live-buffer" />
           <!-- 缓冲区 -->
-          <div class="wsp-load-progress" style="left: 0px; transform: scaleX(1);" />
-          <div class="wsp-hover-progress" style="left: 0px; transform: scaleX(0);" />
+          <div class="wsp-load-progress" style="left: 0px; transform: scaleX(1)" />
+          <div class="wsp-hover-progress" style="left: 0px; transform: scaleX(0)" />
           <div class="wsp-ad-progress-list" />
         </div>
       </div>
     </div>
     <!-- 播放指示器 -->
     <div ref="scrubberRefs" class="wsp-scrubber-container">
-      <div
-        class="wsp-scrubber-button wsp-swatch-background-color" @mousedown.prevent="handleScrubberMover"
-        @drop="handleScrubberUp"
-      >
+      <div class="wsp-scrubber-button wsp-swatch-background-color" @mousedown.prevent="handleScrubberMover" @drop="handleScrubberUp">
         <div class="wsp-scrubber-pull-indicator" />
       </div>
     </div>
   </div>
 </template>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @mixin position {
   position: absolute;
   bottom: 0;
@@ -165,10 +154,10 @@ const _removeEvents = () => {
 
       .wsp-progress-list {
         z-index: 39;
-        background: rgba(255, 255, 255, .2);
+        background: rgba(255, 255, 255, 0.2);
         height: 100%;
         transform: scaleY(0.6);
-        transition: transform .1s cubic-bezier(0.4, 0, 1, 1);
+        transition: transform 0.1s cubic-bezier(0.4, 0, 1, 1);
         position: relative;
 
         .wsp-play-progress {
@@ -187,13 +176,13 @@ const _removeEvents = () => {
           opacity: 0;
           transform-origin: 0 0;
           @include position();
-          transition: transform .1s cubic-bezier(0.4, 0, 1, 1);
+          transition: transform 0.1s cubic-bezier(0.4, 0, 1, 1);
         }
 
         .wsp-load-progress {
           @include position();
           z-index: 33;
-          background: rgba(255, 255, 255, .4);
+          background: rgba(255, 255, 255, 0.4);
           transform-origin: 0 0;
           left: 0px;
           transform: scaleX(0.703556);
@@ -202,9 +191,9 @@ const _removeEvents = () => {
         .wsp-hover-progress {
           @include position();
           z-index: 35;
-          background: rgba(0, 0, 0, .125);
+          background: rgba(0, 0, 0, 0.125);
           opacity: 0;
-          transition: opacity .25s cubic-bezier(0, 0, 0.2, 1);
+          transition: opacity 0.25s cubic-bezier(0, 0, 0.2, 1);
         }
 
         .wsp-ad-progress-list {
@@ -236,10 +225,10 @@ const _removeEvents = () => {
 
         &::before,
         &::after {
-          transition: all .2s;
+          transition: all 0.2s;
           display: block;
           position: absolute;
-          content: "";
+          content: '';
           top: 0;
           left: 0;
           opacity: 0;
