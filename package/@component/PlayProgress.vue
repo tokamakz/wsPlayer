@@ -58,8 +58,10 @@ const handleScrubberMover = ($event) => {
   moveReact.scaleX = $event.layerX - scrubberButtonRefs
   width.value = listRefs.value!.getBoundingClientRect().width
   console.log(scrubberButtonRefs)
-  if (moveReact.scaleX >= width.value) scrubberRefs.value!.style.transform = `translateX(${width.value}px)`
-  else if (moveReact.scaleX < -scrubberButtonRefs) scrubberRefs.value!.style.transform = `translateX(${-scrubberButtonRefs}px)`
+  if (moveReact.scaleX >= width.value)
+    scrubberRefs.value!.style.transform = `translateX(${width.value}px)`
+  else if (moveReact.scaleX < -scrubberButtonRefs)
+    scrubberRefs.value!.style.transform = `translateX(${-scrubberButtonRefs}px)`
   else scrubberRefs.value!.style.transform = `translateX(${moveReact.scaleX}px)`
 
   console.log('dragstart', moveReact.scaleX, width.value)
@@ -87,13 +89,26 @@ const _removeEvents = () => {
 </script>
 
 <template>
-  <div class="wsp-progress-bar" tabindex="-1" role="slider" aria-label="播放滑块" aria-valuemin="0" aria-valuemax="120" aria-valuenow="4" aria-valuetext="0 分钟 7 秒/0 分钟 57 秒">
+  <div
+    class="wsp-progress-bar"
+    tabindex="-1"
+    role="slider"
+    aria-label="播放滑块"
+    aria-valuemin="0"
+    aria-valuemax="120"
+    aria-valuenow="4"
+    aria-valuetext="0 分钟 7 秒/0 分钟 57 秒"
+  >
     <div class="wsp-chapters-container" style="height: 7px">
       <div class="wsp-chapter-hover-container" style="width: 100%">
         <div class="wsp-progress-bar-padding" />
         <div ref="listRefs" class="wsp-progress-list">
           <!-- 已播放区 -->
-          <div ref="progressRefs" class="wsp-play-progress wsp-swatch-background-color" style="left: 0px; transform: scaleX(0)" />
+          <div
+            ref="progressRefs"
+            class="wsp-play-progress wsp-swatch-background-color"
+            style="left: 0px; transform: scaleX(0)"
+          />
           <div class="wsp-progress-linear-live-buffer" />
           <!-- 缓冲区 -->
           <div class="wsp-load-progress" style="left: 0px; transform: scaleX(1)" />
@@ -104,7 +119,11 @@ const _removeEvents = () => {
     </div>
     <!-- 播放指示器 -->
     <div ref="scrubberRefs" class="wsp-scrubber-container">
-      <div class="wsp-scrubber-button wsp-swatch-background-color" @mousedown.prevent="handleScrubberMover" @drop="handleScrubberUp">
+      <div
+        class="wsp-scrubber-button wsp-swatch-background-color"
+        @mousedown.prevent="handleScrubberMover"
+        @drop="handleScrubberUp"
+      >
         <div class="wsp-scrubber-pull-indicator" />
       </div>
     </div>

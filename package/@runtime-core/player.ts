@@ -47,7 +47,7 @@ export class WsPlayer implements Player {
     for (let i = 0; i < info.tracks.length; i++)
       codecs.push(info.tracks[i].codec)
 
-    console.log(codecs)
+    console.info(codecs)
     const video: HTMLVideoElement | null = document.getElementById(this.videoId) as HTMLVideoElement | null
     const mediasource: MediaSource = new MediaSource()
     if (video) {
