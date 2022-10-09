@@ -1,55 +1,79 @@
 <script lang="ts" setup>
-import {  onMounted, ref } from 'vue';
+import { onMounted, ref } from "vue";
 // the progress $refs, modify the width or left
 const progressRefs = ref(null);
 // the scrubber $refs,modify the width
 const scrubberRefs = ref(null);
 const listRefs = ref(null);
-const width = ref<number>(0)
+const width = ref<number>(0);
 onMounted(() => {
   console.dir(listRefs.value.style.width);
 });
 
-const handleScrubberDown = ($event) => {
-  console.log('handleScrubberDown', $event);
-  width.value = listRefs.value.getBoundingClientRect().width
+const handleScrubberDown = $event => {
+  console.log("handleScrubberDown", $event);
+  width.value = listRefs.value.getBoundingClientRect().width;
   scrubberRefs.value.style.transform = `translateX(${$event.layerX}px)`;
-}
-const handleScrubberMover = ($event) => {
-  console.log('handleScrubberMover', $event.layerX);
-  console.log(scrubberRefs.value.style.transform)
-}
-const handleScrubberUp = ($event) => {
-  console.log('handleScrubberUp', $event);
-}
+};
+const handleScrubberMover = $event => {
+  console.log("handleScrubberMover", $event.layerX);
+  console.log(scrubberRefs.value.style.transform);
+};
+const handleScrubberUp = $event => {
+  console.log("handleScrubberUp", $event);
+};
 </script>
 
 <template>
-  <div class="wsp-progress-bar" tabindex="-1" role="slider" aria-label="播放滑块" aria-valuemin="0" aria-valuemax="120"
-    aria-valuenow="4" aria-valuetext="0 分钟 7 秒/0 分钟 57 秒">
-    <div class="wsp-chapters-container" style="height: 7px;">
-      <div class="wsp-chapter-hover-container" style="width: 100%;">
+  <div
+    class="wsp-progress-bar"
+    tabindex="-1"
+    role="slider"
+    aria-label="播放滑块"
+    aria-valuemin="0"
+    aria-valuemax="120"
+    aria-valuenow="4"
+    aria-valuetext="0 分钟 7 秒/0 分钟 57 秒"
+  >
+    <div class="wsp-chapters-container" style="height: 7px">
+      <div class="wsp-chapter-hover-container" style="width: 100%">
         <div class="wsp-progress-bar-padding" />
-        <div class="wsp-progress-list" ref='listRefs'>
+        <div class="wsp-progress-list" ref="listRefs">
           <!-- 已播放区 -->
-          <div class="wsp-play-progress wsp-swatch-background-color" ref='progressRefs' style="left: 0px; transform: scaleX(0);" />
+          <div
+            class="wsp-play-progress wsp-swatch-background-color"
+            ref="progressRefs"
+            style="left: 0px; transform: scaleX(0)"
+          />
           <div class="wsp-progress-linear-live-buffer" />
           <!-- 缓冲区 -->
-          <div class="wsp-load-progress" style="left: 0px; transform: scaleX(1);" />
-          <div class="wsp-hover-progress" style="left: 0px; transform: scaleX(0);" />
+          <div
+            class="wsp-load-progress"
+            style="left: 0px; transform: scaleX(1)"
+          />
+          <div
+            class="wsp-hover-progress"
+            style="left: 0px; transform: scaleX(0)"
+          />
           <div class="wsp-ad-progress-list" />
         </div>
       </div>
     </div>
     <!-- 播放指示器 -->
     <div class="wsp-scrubber-container">
-      <div class="wsp-scrubber-button wsp-swatch-background-color" ref='scrubberRefs' @dragover='handleScrubberDown' @dragstart='handleScrubberMover' @pointerup='handleScrubberUp'>
-        <div class="wsp-scrubber-pull-indicator"></div>
+      <div
+        class="wsp-scrubber-button wsp-swatch-background-color"
+        ref="scrubberRefs"
+        @dragover="handleScrubberDown"
+        @dragstart="handleScrubberMover"
+        @pointerup="handleScrubberUp"
+      >
+        <div class="wsp-scrubber-pull-indicator" />
       </div>
     </div>
   </div>
 </template>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @mixin position {
   position: absolute;
   bottom: 0;
@@ -93,10 +117,10 @@ const handleScrubberUp = ($event) => {
 
       .wsp-progress-list {
         z-index: 39;
-        background: rgba(255, 255, 255, .2);
+        background: rgba(255, 255, 255, 0.2);
         height: 100%;
         transform: scaleY(0.6);
-        transition: transform .1s cubic-bezier(0.4, 0, 1, 1);
+        transition: transform 0.1s cubic-bezier(0.4, 0, 1, 1);
         position: relative;
 
         .wsp-play-progress {
@@ -120,7 +144,7 @@ const handleScrubberUp = ($event) => {
         .wsp-load-progress {
           @include position();
           z-index: 33;
-          background: rgba(255, 255, 255, .4);
+          background: rgba(255, 255, 255, 0.4);
           transform-origin: 0 0;
           left: 0px;
           transform: scaleX(0.703556);
@@ -129,9 +153,9 @@ const handleScrubberUp = ($event) => {
         .wsp-hover-progress {
           @include position();
           z-index: 35;
-          background: rgba(0, 0, 0, .125);
+          background: rgba(0, 0, 0, 0.125);
           opacity: 0;
-          transition: opacity .25s cubic-bezier(0, 0, 0.2, 1);
+          transition: opacity 0.25s cubic-bezier(0, 0, 0.2, 1);
         }
 
         .wsp-ad-progress-list {
@@ -148,7 +172,7 @@ const handleScrubberUp = ($event) => {
     z-index: 43;
 
     .wsp-scrubber-button {
-      transition: transform .1s cubic-bezier(0, 0, 0.2, 1);
+      transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
       height: 13px;
       width: 13px;
       border-radius: 6.5px;

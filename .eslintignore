@@ -1,0 +1,10 @@
+public
+dist
+*.d.ts
+package.json
+.eslintrc.js
+.prettierrc.js
+commitlint.config.js
+postcss.config.js
+*.min.js
+player.ts

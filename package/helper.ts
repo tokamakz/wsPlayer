@@ -4,7 +4,7 @@
  * @returns
  */
 export function isDate(val: any): val is Date {
-  return toString.call(val) === '[object Date]'
+  return toString.call(val) === "[object Date]";
 }
 /**
  * is object
@@ -12,7 +12,7 @@ export function isDate(val: any): val is Date {
  * @returns
  */
 export function isObject(val: any): val is Object {
-  return val !== null && typeof val === 'object'
+  return val !== null && typeof val === "object";
 }
 
 /**
@@ -23,14 +23,13 @@ export function isObject(val: any): val is Object {
  */
 
 export function isPlainObject(params: any): params is Object {
-  return toString.call(params).toLowerCase() === '[object object]'
+  return toString.call(params).toLowerCase() === "[object object]";
 }
 
 export function extend<T, K>(to: T, from: K): T & K {
-  for (const key in from)
-    (to as T & K)[key] = from[key] as any
+  for (const key in from) (to as T & K)[key] = from[key] as any;
 
-  return to as T & K
+  return to as T & K;
 }
 /**
  * Depth merges the objects
@@ -38,22 +37,20 @@ export function extend<T, K>(to: T, from: K): T & K {
  * @returns T
  */
 export const deepMerge = (...obj: any[]) => {
-  const result = Object.create(null)
-  obj.forEach((obj) => {
+  const result = Object.create(null);
+  obj.forEach(obj => {
     if (obj) {
-      Object.keys(obj).forEach((key) => {
-        const val = obj[key]
+      Object.keys(obj).forEach(key => {
+        const val = obj[key];
         if (isPlainObject(val)) {
           if (isPlainObject(result[key]))
-            result[key] = deepMerge(result[key], val)
-          else
-            result[key] = deepMerge(val)
+            result[key] = deepMerge(result[key], val);
+          else result[key] = deepMerge(val);
+        } else {
+          result[key] = val;
         }
-        else {
-          result[key] = val
-        }
-      })
+      });
     }
-  })
-  return result
-}
+  });
+  return result;
+};

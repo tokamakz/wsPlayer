@@ -1,20 +1,20 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { resolve } from "path";
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig(({ mode }) => {
-  const isProd = mode === 'prod'
-  const isDev = mode === 'dev'
-  const isTest = mode === 'test'
+  const isProd = mode === "prod";
+  const isDev = mode === "dev";
+  const isTest = mode === "test";
 
-  let build = {}
+  let build = {};
   if (isProd) {
     build = {
       lib: {
-        entry: resolve(__dirname, './src/index.ts'),
-        name: '@run/ws-player-npm',
-        fileName: 'index',
-        formats: ['es', 'cjs', 'umd'],
+        entry: resolve(__dirname, "./src/index.ts"),
+        name: "@run/ws-player-npm",
+        fileName: "index",
+        formats: ["es", "cjs", "umd"]
       },
       rollupOptions: {
         /**
@@ -22,9 +22,7 @@ export default defineConfig(({ mode }) => {
          * make sure to externalize deps that shouldn't be bundled
          * into your library
          */
-        external: [
-          'vue',
-        ],
+        external: ["vue"],
         output: {
           /**
            * DESC:
@@ -32,46 +30,40 @@ export default defineConfig(({ mode }) => {
            * for externalized deps
            */
           globals: {
-            'vue': 'Vue'
-          },
-        },
-      },
-    }
+            vue: "Vue"
+          }
+        }
+      }
+    };
   }
 
-  let optimizeDeps = {}
+  let optimizeDeps = {};
   if (isDev) {
     /**
      * DESC:
      * dependency pre-bundling
      */
     optimizeDeps = {
-      exclude: [],
-    }
+      exclude: []
+    };
   }
 
-  let test = {}
+  let test = {};
   if (isTest) {
     /**
      * DESC:
      * vitest config
      */
     test = {
-      include: ['test/**/*.test.ts'],
-      environment: 'happy-dom',
+      include: ["test/**/*.test.ts"],
+      environment: "happy-dom",
       deps: {
-        inline: [
-          '@vue'
-        ],
+        inline: ["@vue"]
       },
       coverage: {
-        reporter: [
-          'text',
-          'text-summary',
-          'lcov',
-        ],
-      },
-    }
+        reporter: ["text", "text-summary", "lcov"]
+      }
+    };
   }
 
   return {
@@ -87,10 +79,10 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: [
         {
-          find: '@',
-          replacement: resolve(__dirname, './src'),
-        },
-      ],
-    },
-  }
-})
+          find: "@",
+          replacement: resolve(__dirname, "./src")
+        }
+      ]
+    }
+  };
+});

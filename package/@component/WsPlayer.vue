@@ -1,25 +1,24 @@
-
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script lang="ts" setup>
-import PlayProgress from './PlayProgress.vue';
-import PlayButton from './PlayButton.vue';
-
+import WsPlayer from "../@runtime-core/player";
+import PlayProgress from "./PlayProgress.vue";
+import PlayButton from "./PlayButton.vue";
 interface Props {
-  url?: string
+  url?: string;
 }
-const wsOptions = {}
 const props = withDefaults(defineProps<Props>(), {
-  url: '',
-})
-
+  url: ""
+});
+const ws = new WsPlayer("wsp", props.url);
+ws.open();
+console.log(ws);
 </script>
 
 <template>
   <div class="ws-player">
     <div class="wsp-container">
       <div class="wsp-video-container">
-        <video id="wsp-api-flush" tabindex="-1" :autoplay="false" muted class="wsp-video">
-          <source :src="props.url" type="video/mp4">
-        </video>
+        <video id="wsp" muted autoplay class="wsp-video" />
       </div>
       <div class="wsp-control-bottom">
         <div class="wsp-progress-bar-container" />
@@ -38,5 +37,5 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style lang="scss" scoped>
-@import '../@scss/index.scss';
+@import "../@scss/index.scss";
 </style>
