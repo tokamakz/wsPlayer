@@ -1,6 +1,10 @@
 {
-  "bracketSpacing": true,
-  "singleQuote": false,
-  "arrowParens": "avoid",
-  "trailingComma": "none"
+  "printWidth": 100,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "arrowParens": "always",
+  "Irregularwhitespace": false,
+  "skipStrings": true,
+  "skipComments": true
 }

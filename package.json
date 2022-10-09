@@ -42,6 +42,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "lint-fix": "eslint --fix --ext .js --ext .vue src/",
     "test": "pnpm clean:coverage && vitest --coverage --mode test"
   },
   "config": {
@@ -70,6 +71,7 @@
     "happy-dom": "^2.49.0",
     "husky": "^7.0.4",
     "jest": "^28.1.1",
+    "mp4box": "^0.5.2",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "sass": "^1.52.2",

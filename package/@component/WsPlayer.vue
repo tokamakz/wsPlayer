@@ -1,17 +1,22 @@
 <!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script lang="ts" setup>
-import WsPlayer from "../@runtime-core/player";
-import PlayProgress from "./PlayProgress.vue";
-import PlayButton from "./PlayButton.vue";
+import PlayProgress from './PlayProgress.vue';
+import PlayButton from './PlayButton.vue';
+import { ref } from 'vue';
+import { number } from 'yargs';
+
 interface Props {
   url?: string;
 }
 const props = withDefaults(defineProps<Props>(), {
-  url: ""
+  url: '',
 });
-const ws = new WsPlayer("wsp", props.url);
-ws.open();
-console.log(ws);
+const percent = ref<number>(10);
+let timer: NodeJS.Timer | number = -99999;
+timer && clearInterval(timer);
+// timer = setInterval(() => {
+//   percent.value += 10;
+// }, 1000)
 </script>
 
 <template>
@@ -27,7 +32,7 @@ console.log(ws);
             <!-- 播放按钮 -->
             <PlayButton />
             <!-- 播放进度条 -->
-            <PlayProgress />
+            <PlayProgress :percent="percent" />
           </div>
           <div class="wsp-right-controls" />
         </div>
@@ -37,5 +42,5 @@ console.log(ws);
 </template>
 
 <style lang="scss" scoped>
-@import "../@scss/index.scss";
+@import '../@scss/index.scss';
 </style>

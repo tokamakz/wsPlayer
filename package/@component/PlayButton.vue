@@ -14,6 +14,6 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../@scss/button.scss";
-@import "../@scss/playButton.scss";
+@import '../@scss/button.scss';
+@import '../@scss/playButton.scss';
 </style>

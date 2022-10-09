@@ -1,11 +1,16 @@
-"use strict";
-
-function wsPlayer(videoId, wsUrl) {
-  this.videoId = videoId;
-  this.wsUrl = wsUrl;
-  this.ws = null;
-  this.frameQueue = [];
-  console.log("wsPlayer v1.0.1 20220423");
+import type { HtmlAttributes } from 'csstype'
+import { isEmptyStr } from './helper'
+import * as MP4Box from './mp4box.all.min.js'
+interface Player {
+  videoId: string | HtmlAttributes
+  url: string | undefined | null
+  ws: null | WebSocket
+  // TODO: ADD QUEUE CONSTRUCTOR
+  frameQueue: Array<any>
+  sourcebuffer: SourceBuffer | null
+  debug: boolean
+  firstMessage: boolean
+  open: () => void
 }
 
 wsPlayer.prototype.open = function () {
