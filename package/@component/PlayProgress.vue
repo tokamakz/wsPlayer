@@ -1,26 +1,29 @@
 <script lang="ts" setup>
+import type { Ref } from "vue";
 import { onMounted, ref } from "vue";
 // the progress $refs, modify the width or left
-const progressRefs = ref(null);
+// const progressRefs: Ref<HTMLElement | null> = ref(null);
 // the scrubber $refs,modify the width
-const scrubberRefs = ref(null);
-const listRefs = ref(null);
+const scrubberRefs: Ref<HTMLElement | null> = ref(null);
+const listRefs: Ref<HTMLElement | null> = ref(null);
 const width = ref<number>(0);
 onMounted(() => {
-  console.dir(listRefs.value.style.width);
+  // ***
 });
 
 const handleScrubberDown = $event => {
   console.log("handleScrubberDown", $event);
-  width.value = listRefs.value.getBoundingClientRect().width;
-  scrubberRefs.value.style.transform = `translateX(${$event.layerX}px)`;
+  if (listRefs.value)
+    width.value = listRefs.value.getBoundingClientRect().width;
+
+  if (scrubberRefs.value && scrubberRefs.value)
+    scrubberRefs.value.style.transform = `translateX(${$event.layerX}px)`;
 };
-const handleScrubberMover = $event => {
-  console.log("handleScrubberMover", $event.layerX);
-  console.log(scrubberRefs.value.style.transform);
+const handleScrubberMover = () => {
+  // ***
 };
 const handleScrubberUp = $event => {
-  console.log("handleScrubberUp", $event);
+  // ***
 };
 </script>
 
@@ -38,11 +41,11 @@ const handleScrubberUp = $event => {
     <div class="wsp-chapters-container" style="height: 7px">
       <div class="wsp-chapter-hover-container" style="width: 100%">
         <div class="wsp-progress-bar-padding" />
-        <div class="wsp-progress-list" ref="listRefs">
+        <div ref="listRefs" class="wsp-progress-list">
           <!-- 已播放区 -->
           <div
-            class="wsp-play-progress wsp-swatch-background-color"
             ref="progressRefs"
+            class="wsp-play-progress wsp-swatch-background-color"
             style="left: 0px; transform: scaleX(0)"
           />
           <div class="wsp-progress-linear-live-buffer" />
@@ -62,8 +65,8 @@ const handleScrubberUp = $event => {
     <!-- 播放指示器 -->
     <div class="wsp-scrubber-container">
       <div
-        class="wsp-scrubber-button wsp-swatch-background-color"
         ref="scrubberRefs"
+        class="wsp-scrubber-button wsp-swatch-background-color"
         @dragover="handleScrubberDown"
         @dragstart="handleScrubberMover"
         @pointerup="handleScrubberUp"

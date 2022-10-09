@@ -37,7 +37,7 @@ module.exports = {
     "eslint:recommended",
     "@vue/typescript/recommended",
     "@vue/prettier",
-    "@vue/eslint-config-typescript"
+    "@vue/eslint-config-typescript",
   ],
   parser: "vue-eslint-parser",
   parserOptions: {
@@ -94,20 +94,6 @@ module.exports = {
         },
         svg: "always",
         math: "always"
-      }
-    ],
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_"
-      }
-    ],
-    "no-unused-vars": [
-      "error",
-      {
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_"
       }
     ],
     "prettier/prettier": [
