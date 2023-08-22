@@ -74,5 +74,8 @@ ws://100.100.154.29:8080/live/test.live.mp4
 * v2.0 实现用WebAssembly FFmpeg解码H.265，然后用canvas标签WebGL渲染YUV，从而实现播放WebSocket-fmp4（H.265）直播流，并实现动态切换H.264、H.265这两种播放机制；
 * v3.0 实现视频流SEI信息的callback回调
 
+## 版本发布计划
+* 将于本周发布MagicPlayer V1.0.0版本 将支持react组件使用  可直接npm i MagicPlayer  发布日期:2023.8.27
+
 ## 联系方式
 - QQ交流群：群名称：wsPlayer  群号：710185138
