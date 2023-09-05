@@ -75,7 +75,7 @@ ws://100.100.154.29:8080/live/test.live.mp4
 * v3.0 实现视频流SEI信息的callback回调
 
 ## 版本发布计划
-* 将于本周发布MagicPlayer V1.0.0版本 将支持react组件使用  可直接npm i MagicPlayer  发布日期:2023.8.27
-
+* 将于本周发布magic-viodeplayer V1.0.0版本 将支持react组件使用  可直接npm i magic-videoplayer  发布日期:2023.8.27
+* 版本已发布请配合本仓库使用 发布日期:2023.9.5
 ## 联系方式
 - QQ交流群：群名称：wsPlayer  群号：710185138
