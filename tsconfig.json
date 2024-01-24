@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "esModuleInterop": true,
+    // "types": ["jest"],
+    // "typeRoots": ["./typings"],
+    "typeRoots": ["node_modules/@types", "./typings"],
+    "strict": false,
+    "skipLibCheck": true,
+    "declaration": true,
+    "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@": ["src"],
+      "@@/*": ["src/.umi/*"],
+      "!@/*": ["src/*"]
+    }
+  }
+}

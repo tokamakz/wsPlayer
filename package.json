@@ -1,0 +1,71 @@
+{
+  "name": "magic-videoplayer",
+  "version": "1.0.4",
+  "scripts": {
+    "start": "dumi dev",
+    "docs:build": "ANALYZE=1 dumi build",
+    "docs:deploy": "gh-pages -d docs-dist",
+    "build": "father-build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
+  "private": false,
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "babel-plugin-import": "^1.13.5",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "copy-to-clipboard": "^3.3.1",
+    "esfmt": "^0.0.15",
+    "jquery": "^3.6.0",
+    "lodash-es": "^4.17.21",
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.3",
+    "@types/lodash-es": "^4.17.6",
+    "@types/react": "17.0.0",
+    "@umijs/fabric": "^2.8.1",
+    "@umijs/test": "^3.0.5",
+    "dumi": "^1.1.0",
+    "father-build": "^1.17.2",
+    "gh-pages": "^3.0.0",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.1",
+    "yorkie": "^2.0.0"
+  },
+  "license": "MPL",
+  "sideEffects": [
+    "*.less",
+    "*.css",
+    "*.scss",
+    "es/**/*.less",
+    "es/**/*.css"
+  ],
+  "peerDependencies": {
+    "jquery": ">=3.5.1",
+    "react": ">=16.11.0",
+    "react-dom": ">=16.11.0"
+  },
+  "files": [
+    "es"
+  ],
+  "author":"wujiahao , zhangbingjian"
+}

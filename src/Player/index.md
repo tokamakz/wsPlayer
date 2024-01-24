@@ -1,14 +1,12 @@
-# magic-videoplayer
-
-magic-videoplayer 基于 react 开发,支持主流的播放器功能 以及主流的视频格式和功能 以及判别视频文件属于哪类视频格式，支持多个播放器同步播放时间校正 #使用
-
-#项目里使用
-
-```
-npm i magic-videoplayer --save
-或
-yarn add magic-videoplayer
-```
+---
+title: 播放器
+toc: content
+order: 3
+nav:
+  path: /universal
+  title: 通用组件
+  order: 1
+---
 
 # Player 播放器
 
@@ -45,7 +43,7 @@ const Play = () => {
           onPlay={(w, h, type) => {
             console.log({ w, h, type });
           }}
-          emptyurlPrompt="请选择摄像头"
+          emptyurlPrompt=""
           onFullChange={(full) => {
             console.log(full);
           }}
@@ -58,7 +56,7 @@ const Play = () => {
 export default () => <Play />;
 ```
 
-## API
+## API 说明
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
