@@ -65,7 +65,7 @@ ws://100.100.154.29:8080/live/test.live.mp4
 </body>
 </html>
 ```
-5.## magic-videoplayer
+## 5. magic-videoplayer
 原本打算起名wsplayer，但是wsplayer的项目名称在npm公共仓库中已经被使用，顾起名`magic-videoplayer`
 magic-videoplayer 基于 react 开发,支持主流的播放器功能 以及主流的视频格式和功能 以及判别视频文件属于哪类视频格式，支持多个播放器同步播放时间校正 #使用
 
